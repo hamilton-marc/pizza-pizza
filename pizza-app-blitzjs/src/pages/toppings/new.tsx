@@ -1,14 +1,14 @@
-import { Routes } from "@blitzjs/next";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useMutation } from "@blitzjs/rpc";
-import Layout from "src/core/layouts/Layout";
-import createTopping from "src/toppings/mutations/createTopping";
-import { ToppingForm, FORM_ERROR } from "src/toppings/components/ToppingForm";
+import { Routes } from "@blitzjs/next"
+import Link from "next/link"
+import { useRouter } from "next/router"
+import { useMutation } from "@blitzjs/rpc"
+import Layout from "src/core/layouts/Layout"
+import createTopping from "src/toppings/mutations/createTopping"
+import { ToppingForm, FORM_ERROR } from "src/toppings/components/ToppingForm"
 
 const NewToppingPage = () => {
-  const router = useRouter();
-  const [createToppingMutation] = useMutation(createTopping);
+  const router = useRouter()
+  const [createToppingMutation] = useMutation(createTopping)
 
   return (
     <Layout title={"Create New Topping"}>
@@ -23,15 +23,13 @@ const NewToppingPage = () => {
         // initialValues={{}}
         onSubmit={async (values) => {
           try {
-            const topping = await createToppingMutation(values);
-            await router.push(
-              Routes.ShowToppingPage({ toppingId: topping.id })
-            );
+            const topping = await createToppingMutation(values)
+            await router.push(Routes.ShowToppingPage({ toppingId: topping.id }))
           } catch (error: any) {
-            console.error(error);
+            console.error(error)
             return {
               [FORM_ERROR]: error.toString(),
-            };
+            }
           }
         }}
       />
@@ -42,9 +40,9 @@ const NewToppingPage = () => {
         </Link>
       </p>
     </Layout>
-  );
-};
+  )
+}
 
-NewToppingPage.authenticate = true;
+NewToppingPage.authenticate = false
 
-export default NewToppingPage;
+export default NewToppingPage
