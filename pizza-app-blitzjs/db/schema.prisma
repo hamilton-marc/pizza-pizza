@@ -70,3 +70,10 @@ model Topping {
   updatedAt DateTime @updatedAt
   name      String   @unique
 }
+
+model Pizza {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String
+}

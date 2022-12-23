@@ -2,17 +2,17 @@ import { resolver } from "@blitzjs/rpc"
 import db from "db"
 import { z } from "zod"
 
-const DeleteTopping = z.object({
-  id: z.number(),
+const CreatePizza = z.object({
+  name: z.string(),
 })
 
 export default resolver.pipe(
-  resolver.zod(DeleteTopping),
+  resolver.zod(CreatePizza),
   //  resolver.authorize(),
-  async ({ id }) => {
+  async (input) => {
     // TODO: in multi-tenant app, you must add validation to ensure correct tenant
-    const topping = await db.topping.deleteMany({ where: { id } })
+    const pizza = await db.pizza.create({ data: input })
 
-    return topping
+    return pizza
   }
 )
