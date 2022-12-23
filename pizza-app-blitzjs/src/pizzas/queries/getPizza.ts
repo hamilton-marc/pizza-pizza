@@ -13,7 +13,10 @@ export default resolver.pipe(
   //  resolver.authorize(),
   async ({ id }) => {
     // TODO: in multi-tenant app, you must add validation to ensure correct tenant
-    const pizza = await db.pizza.findFirst({ where: { id } })
+    const pizza = await db.pizza.findFirst({
+      where: { id },
+      include: { toppings: true },
+    })
 
     if (!pizza) throw new NotFoundError()
 

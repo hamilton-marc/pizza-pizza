@@ -26,6 +26,15 @@ export const Pizza = () => {
         <h1>Pizza {pizza.id}</h1>
         <pre>{JSON.stringify(pizza, null, 2)}</pre>
 
+        <h3>Toppings:</h3>
+        <div>
+          <ul>
+            {pizza.toppings.map((topping) => (
+              <li key={topping.id}>{topping.name}</li>
+            ))}
+          </ul>
+        </div>
+
         <Link href={Routes.EditPizzaPage({ pizzaId: pizza.id })}>
           <a>Edit</a>
         </Link>

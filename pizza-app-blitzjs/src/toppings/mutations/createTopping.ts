@@ -1,7 +1,7 @@
 import { resolver } from "@blitzjs/rpc"
 import db from "db"
 import { z } from "zod"
-import toppingAlreadyExists from "./validations"
+import toppingAlreadyExists from "./validateToppings"
 
 const CreateTopping = z.object({
   name: z.string(),
